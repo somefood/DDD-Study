@@ -1,7 +1,10 @@
 package me.seokju.dddstudy.order.domain;
 
+import lombok.Getter;
+
 import java.util.List;
 
+@Getter
 public class Order {
     private List<OrderLine> orderLines;
     private Money totalAmounts;
