@@ -4,20 +4,22 @@ import org.junit.jupiter.api.Test;
 
 import java.util.List;
 
+import static org.assertj.core.api.Assertions.*;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 class OrderTest {
 
     @Test
-    void 최소_한_종류_이상의_상품을_주문해야_한다() {
+    void create() {
         // Arrange
         List<OrderLine> orderLines = List.of(new OrderLine(new Product(), 1000, 5));
+        ShippingInfo shippingInfo = new ShippingInfo("receiver1", "010-1234-5678", "address1", "addressDetail1", "12345");
 
         // Act
-        Order order = new Order(orderLines);
+        Order order = new Order(orderLines, shippingInfo);
 
         // Assert
         assertThat(order.getOrderLines()).hasSizeGreaterThanOrEqualTo(1);
+        assertThat(order.getShippingInfo()).isNotNull();
     }
 }

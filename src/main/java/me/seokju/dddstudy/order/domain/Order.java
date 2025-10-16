@@ -8,14 +8,16 @@ import java.util.List;
 public class Order {
     private List<OrderLine> orderLines;
     private Money totalAmounts;
+    private ShippingInfo shippingInfo;
 
-    public Order(List<OrderLine> orderLines) {
+    public Order(List<OrderLine> orderLines, ShippingInfo shippingInfo) {
         setOrderLines(orderLines);
+        setShippingInfo(shippingInfo);
     }
 
     public void changeShipped() {}
 
-    public void changeShippingInfo() {}
+    public void changeShippingInfo(ShippingInfo shippingInfo) {}
 
     public void cancel() {}
 
@@ -38,5 +40,12 @@ public class Order {
                 .mapToInt(OrderLine::getAmounts)
                 .sum();
         this.totalAmounts = new Money(sum);
+    }
+
+    private void setShippingInfo(ShippingInfo shippingInfo) {
+        if (shippingInfo == null) {
+            throw new IllegalArgumentException("no ShippingInfo");
+        }
+        this.shippingInfo = shippingInfo;
     }
 }
