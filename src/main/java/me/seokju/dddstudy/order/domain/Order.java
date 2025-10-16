@@ -9,6 +9,7 @@ public class Order {
     private List<OrderLine> orderLines;
     private Money totalAmounts;
     private ShippingInfo shippingInfo;
+    private OrderState stage;
 
     public Order(List<OrderLine> orderLines, ShippingInfo shippingInfo) {
         setOrderLines(orderLines);
@@ -17,7 +18,10 @@ public class Order {
 
     public void changeShipped() {}
 
-    public void changeShippingInfo(ShippingInfo shippingInfo) {}
+    public void changeShippingInfo(ShippingInfo newShippingInfo) {
+        verifyNotYetShipped();
+        setShippingInfo(newShippingInfo);
+    }
 
     public void cancel() {}
 
@@ -47,5 +51,11 @@ public class Order {
             throw new IllegalArgumentException("no ShippingInfo");
         }
         this.shippingInfo = shippingInfo;
+    }
+
+    private void verifyNotYetShipped() {
+        if (stage != OrderState.PAYMENT_WAITING && stage != OrderState.PREPARING) {
+            throw new IllegalStateException("already shipped");
+        }
     }
 }
