@@ -1,7 +1,12 @@
 package me.seokju.dddstudy.order.domain;
 
-public class Money {
+public record Money(int value) {
 
-    public Money(int amount) {
+    public Money add(Money money) {
+        return new Money(this.value + money.value);
+    }
+
+    public Money multiply(int multiplier) {
+        return new Money(this.value * multiplier);
     }
 }
