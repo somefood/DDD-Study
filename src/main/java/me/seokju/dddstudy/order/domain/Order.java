@@ -1,11 +1,16 @@
 package me.seokju.dddstudy.order.domain;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.util.List;
 
 @Getter
+@Entity
+@Table(name = "purchase_order")
+@Access(AccessType.FIELD)
 public class Order {
+    @EmbeddedId
     private OrderNo id;
     private Orderer orderer;
     private List<OrderLine> orderLines;
