@@ -12,7 +12,10 @@ import java.util.List;
 public class Order {
     @EmbeddedId
     private OrderNo id;
+
+    @Embedded
     private Orderer orderer;
+
     private List<OrderLine> orderLines;
     private Money totalAmounts;
     private ShippingInfo shippingInfo;
