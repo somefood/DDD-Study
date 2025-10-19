@@ -6,14 +6,22 @@ import java.util.List;
 
 @Getter
 public class Order {
+    private OrderNo id;
+    private Orderer orderer;
     private List<OrderLine> orderLines;
     private Money totalAmounts;
     private ShippingInfo shippingInfo;
     private OrderState stage;
 
-    public Order(List<OrderLine> orderLines, ShippingInfo shippingInfo) {
+    public Order(Orderer orderer, List<OrderLine> orderLines, ShippingInfo shippingInfo) {
+        setOrderer(orderer);
         setOrderLines(orderLines);
         setShippingInfo(shippingInfo);
+    }
+
+    private void setOrderer(Orderer orderer) {
+        if (orderer == null) throw new IllegalArgumentException("no orderer");
+        this.orderer = orderer;
     }
 
     public void changeShipped() {}
