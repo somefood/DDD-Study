@@ -9,4 +9,8 @@ public record Money(int value) {
     public Money multiply(int multiplier) {
         return new Money(this.value * multiplier);
     }
+
+    public Integer getValue() {
+        return this.value;
+    }
 }

@@ -1,14 +1,19 @@
 package me.seokju.dddstudy.order.domain;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
+
+import static lombok.AccessLevel.PROTECTED;
 
 @Getter
 @Entity
 @Table(name = "purchase_order")
 @Access(AccessType.FIELD)
+@NoArgsConstructor(access = PROTECTED)
 public class Order {
     @EmbeddedId
     private OrderNo id;
@@ -16,9 +21,19 @@ public class Order {
     @Embedded
     private Orderer orderer;
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(
+            name = "order_line",
+            joinColumns = @JoinColumn(name = "order_number")
+    )
+    @OrderColumn(name = "line_idx")
     private List<OrderLine> orderLines;
+
+    @Column(name = "total_amounts")
     private Money totalAmounts;
+
     private ShippingInfo shippingInfo;
+
     private OrderState stage;
 
     public Order(Orderer orderer, List<OrderLine> orderLines, ShippingInfo shippingInfo) {
