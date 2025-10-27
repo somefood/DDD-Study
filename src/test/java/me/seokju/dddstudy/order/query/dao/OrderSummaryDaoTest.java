@@ -4,6 +4,7 @@ import me.seokju.dddstudy.order.query.dto.OrderSummary;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.test.context.jdbc.Sql;
 
@@ -29,5 +30,12 @@ class OrderSummaryDaoTest {
 
         List<OrderSummary> results = orderSummaryDao.findAll(spec);
         assertThat(results).hasSize(1);
+    }
+    @Test
+    void findByOrdererIdSort() {
+        Sort sort = Sort.by("number").ascending();
+        List<OrderSummary> results = orderSummaryDao.findByOrdererId("user1", sort);
+        assertThat(results.get(0).getNumber()).isEqualTo("ORDER-001");
+        assertThat(results.get(1).getNumber()).isEqualTo("ORDER-002");
     }
 }
