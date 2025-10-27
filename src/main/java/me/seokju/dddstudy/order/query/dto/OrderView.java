@@ -1,8 +1,9 @@
 package me.seokju.dddstudy.order.query.dto;
 
-import com.myshop.member.command.domain.MemberId;
-import com.myshop.order.command.domain.OrderNo;
-import com.myshop.order.command.domain.OrderState;
+
+import me.seokju.dddstudy.order.domain.MemberId;
+import me.seokju.dddstudy.order.domain.OrderNo;
+import me.seokju.dddstudy.order.domain.OrderState;
 
 public class OrderView {
 
@@ -13,7 +14,7 @@ public class OrderView {
     private final String productName;
 
     public OrderView(OrderNo number, OrderState state, String memberName, MemberId memberId, String productName) {
-        this.number = number.getNumber();
+        this.number = number.number();
         this.state = state;
         this.memberName = memberName;
         this.memberId = memberId.getId();
