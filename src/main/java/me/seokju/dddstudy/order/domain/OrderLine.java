@@ -4,6 +4,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Embedded;
 import lombok.Getter;
+import me.seokju.dddstudy.catalog.domain.product.ProductId;
 
 @Getter
 @Embeddable
@@ -21,9 +22,9 @@ public class OrderLine {
     @Column(name = "amounts")
     private Money amounts;
 
-    public OrderLine(ProductId productId, int price, int quantity) {
+    public OrderLine(ProductId productId, Money price, int quantity) {
         this.productId = productId;
-        this.price = new Money(price);
+        this.price = price;
         this.quantity = quantity;
         this.amounts = calculateAmounts();
     }

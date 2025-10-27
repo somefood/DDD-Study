@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import me.seokju.dddstudy.common.model.Address;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
@@ -26,6 +27,6 @@ public class ShippingInfo {
 
     public ShippingInfo(String receiverName, String receiverPhoneNumber, String shippingAddress1, String shippingAddress2, String shippingZipcode) {
         this.receiver = new Receiver(receiverName, receiverPhoneNumber);
-        this.address = new Address(shippingAddress1, shippingAddress2, shippingZipcode);
+        this.address = new Address(shippingZipcode, shippingAddress1, shippingAddress2);
     }
 }

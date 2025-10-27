@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static lombok.AccessLevel.PROTECTED;
@@ -15,7 +16,7 @@ import static lombok.AccessLevel.PROTECTED;
 @NoArgsConstructor(access = PROTECTED)
 public class Order {
     @EmbeddedId
-    private OrderNo id;
+    private OrderNo number;
 
     @Embedded
     private Orderer orderer;
@@ -33,12 +34,26 @@ public class Order {
 
     private ShippingInfo shippingInfo;
 
-    private OrderState stage;
+    @Column(name = "state")
+    @Enumerated(EnumType.STRING)
+    private OrderState state;
 
-    public Order(Orderer orderer, List<OrderLine> orderLines, ShippingInfo shippingInfo) {
+    @Column(name = "order_date")
+    private LocalDateTime orderDate;
+
+    public Order(OrderNo number, Orderer orderer, List<OrderLine> orderLines,
+                 ShippingInfo shippingInfo, OrderState state) {
+        setNumber(number);
         setOrderer(orderer);
         setOrderLines(orderLines);
         setShippingInfo(shippingInfo);
+        this.state = state;
+        this.orderDate = LocalDateTime.now();
+    }
+
+    private void setNumber(OrderNo number) {
+        if (number == null) throw new IllegalArgumentException("no number");
+        this.number = number;
     }
 
     private void setOrderer(Orderer orderer) {
@@ -84,7 +99,7 @@ public class Order {
     }
 
     private void verifyNotYetShipped() {
-        if (stage != OrderState.PAYMENT_WAITING && stage != OrderState.PREPARING) {
+        if (state != OrderState.PAYMENT_WAITING && state != OrderState.PREPARING) {
             throw new IllegalStateException("already shipped");
         }
     }
