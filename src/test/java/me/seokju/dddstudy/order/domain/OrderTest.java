@@ -12,11 +12,12 @@ class OrderTest {
     @Test
     void create() {
         // Arrange
-        List<OrderLine> orderLines = List.of(new OrderLine(new Product(), 1000, 5));
+        Orderer orderer = new Orderer();
+        List<OrderLine> orderLines = List.of(new OrderLine(new ProductId(), 1000, 5));
         ShippingInfo shippingInfo = new ShippingInfo("receiver1", "010-1234-5678", "address1", "addressDetail1", "12345");
 
         // Act
-        Order order = new Order(orderLines, shippingInfo);
+        Order order = new Order(orderer, orderLines, shippingInfo);
 
         // Assert
         assertThat(order.getOrderLines()).hasSizeGreaterThanOrEqualTo(1);

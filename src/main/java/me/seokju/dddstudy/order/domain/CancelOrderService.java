@@ -15,9 +15,9 @@ public class CancelOrderService {
         Order order = orderRepository.findById(orderNo)
                 .orElseThrow(() -> new NoOrderException());
 
-        if (!cancelPolicy.hasCencellationPermission(order, canceller)) {
-            throw new NoCancellablePermission();
-        }
+//        if (!cancelPolicy.hasCencellationPermission(order, canceller)) {
+//            throw new NoCancellablePermission();
+//        }
         order.cancel();
     }
 }
