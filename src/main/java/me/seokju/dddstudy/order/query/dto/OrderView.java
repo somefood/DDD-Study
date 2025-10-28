@@ -1,9 +1,9 @@
 package me.seokju.dddstudy.order.query.dto;
 
 
-import me.seokju.dddstudy.order.domain.MemberId;
-import me.seokju.dddstudy.order.domain.OrderNo;
-import me.seokju.dddstudy.order.domain.OrderState;
+import me.seokju.dddstudy.order.command.domain.MemberId;
+import me.seokju.dddstudy.order.command.domain.OrderNo;
+import me.seokju.dddstudy.order.command.domain.OrderState;
 
 public class OrderView {
 

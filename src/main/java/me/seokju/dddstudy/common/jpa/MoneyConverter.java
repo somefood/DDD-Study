@@ -2,7 +2,7 @@ package me.seokju.dddstudy.common.jpa;
 
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
-import me.seokju.dddstudy.order.domain.Money;
+import me.seokju.dddstudy.order.command.domain.Money;
 
 @Converter(autoApply = true)
 public class MoneyConverter implements AttributeConverter<Money, Integer> {

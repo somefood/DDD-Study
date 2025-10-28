@@ -1,4 +1,4 @@
-package me.seokju.dddstudy.order.domain;
+package me.seokju.dddstudy.order.command.domain;
 
 import org.springframework.data.repository.Repository;
 

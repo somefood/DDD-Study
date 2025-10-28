@@ -6,6 +6,7 @@ import me.seokju.dddstudy.catalog.domain.product.ProductId;
 import me.seokju.dddstudy.catalog.domain.product.ProductRepository;
 import me.seokju.dddstudy.common.ValidationError;
 import me.seokju.dddstudy.common.ValidationErrorException;
+import me.seokju.dddstudy.order.command.domain.*;
 import me.seokju.dddstudy.order.domain.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

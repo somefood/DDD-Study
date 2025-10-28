@@ -1,7 +1,7 @@
 package me.seokju.dddstudy.order.command.application;
 
-import me.seokju.dddstudy.order.domain.MemberId;
-import me.seokju.dddstudy.order.domain.ShippingInfo;
+import me.seokju.dddstudy.order.command.domain.MemberId;
+import me.seokju.dddstudy.order.command.domain.ShippingInfo;
 
 import java.util.List;
 

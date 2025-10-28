@@ -2,7 +2,7 @@ package me.seokju.dddstudy.catalog.domain.product;
 
 import jakarta.persistence.*;
 import me.seokju.dddstudy.catalog.domain.catalog.CategoryId;
-import me.seokju.dddstudy.order.domain.Money;
+import me.seokju.dddstudy.order.command.domain.Money;
 
 import java.util.ArrayList;
 import java.util.Collections;
