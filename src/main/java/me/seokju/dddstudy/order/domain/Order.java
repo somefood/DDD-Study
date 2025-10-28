@@ -18,6 +18,9 @@ public class Order {
     @EmbeddedId
     private OrderNo number;
 
+    @Version
+    private long version;
+
     @Embedded
     private Orderer orderer;
 
