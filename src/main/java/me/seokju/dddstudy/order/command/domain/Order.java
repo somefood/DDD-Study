@@ -106,4 +106,24 @@ public class Order {
             throw new IllegalStateException("already shipped");
         }
     }
+
+    public boolean matchingVersion(long version) {
+        return this.version == version;
+    }
+
+    public void startShipping() {
+        verifyShippableState();
+        this.state = OrderState.SHIPPED;
+    }
+
+    private void verifyShippableState() {
+        verifyNotYetShipped();
+        verifyNotCanceled();
+    }
+
+    private void verifyNotCanceled() {
+        if (state == OrderState.CANCELED) {
+            throw new OrderAlreadyCanceledException();
+        }
+    }
 }
