@@ -3,6 +3,7 @@ package me.seokju.dddstudy.order.command.domain;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import me.seokju.dddstudy.common.event.Events;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -71,7 +72,11 @@ public class Order {
         setShippingInfo(newShippingInfo);
     }
 
-    public void cancel() {}
+    public void cancel() {
+        verifyNotYetShipped();
+        this.state = OrderState.CANCELED;
+        Events.raise(new OrderCanceledEvent(number.number()));
+    }
 
     public void completePayment() {}
 
